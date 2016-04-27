@@ -3,12 +3,10 @@ package menjacnica;
 import java.util.LinkedList;
 
 public class Menjacnica implements MenjacnicaInterfejs  {
-	LinkedList<Kurs> valute;
+	LinkedList<Kurs> kursnaLista=new LinkedList<>();
 	
 
-	public Menjacnica() {
-		valute=new LinkedList<>();
-	}
+
 	
 	
 	@Override
@@ -17,11 +15,11 @@ public class Menjacnica implements MenjacnicaInterfejs  {
 			throw new RuntimeException("Greska");
 			
 		}
-		if(valute.contains(k)){
+		if(kursnaLista.contains(k)){
 			return;
 		}
 		
-		valute.add(k);
+		kursnaLista.add(k);
 		
 	}
 
@@ -30,21 +28,24 @@ public class Menjacnica implements MenjacnicaInterfejs  {
 		if(k==null){
 			throw new RuntimeException("Greska");
 		}
-		if(valute.contains(k)){
-			valute.remove(k);
+		if(kursnaLista.contains(k)){
+			kursnaLista.remove(k);
 		} 
 	}
 
 	@Override
 	public Kurs vratiKurs(String naziv) {
-		for (int i = 0; i < valute.size(); i++) {
-			if(valute.get(i).getNaziv().equals(naziv)){
-				return valute.get(i);
+		for (int i = 0; i < kursnaLista.size(); i++) {
+			if(kursnaLista.get(i).getNaziv().equals(naziv)){
+				return kursnaLista.get(i);
 			}
 		}
 		
 		return null;
 	}
 	
+	public LinkedList<Kurs> vratiKursnuListu(){
+		return kursnaLista;
+	}
 }
 

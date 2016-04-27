@@ -18,6 +18,9 @@ import javax.swing.JButton;
 import java.awt.Dimension;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+
+import model.MenjacnicaModel;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -47,22 +50,16 @@ public class MenjacnicaGUI extends JFrame {
 	private JScrollPane scrollPane;
 	private JTable table;
 	private JPopupMenu popupMenu;
+	private JMenuItem mntmDodajKurs;
+	private JMenuItem mntmObrisiKurs;
+	private JMenuItem mntmIzvrsiZamenu;
+	
+
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenjacnicaGUI frame = new MenjacnicaGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
@@ -174,14 +171,18 @@ public class MenjacnicaGUI extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			addPopup(scrollPane, getPopupMenu());
 			scrollPane.setViewportView(getTable());
 		}
 		return scrollPane;
 	}
 	private JTable getTable() {
+		
 		if (table == null) {
 			table = new JTable();
+			table.setFillsViewportHeight(true);
+			
+			table.setModel(new MenjacnicaModel(GUIKontroler.vratiKurnuListu()));
+			addPopup(table, getPopupMenu());
 		}
 		return table;
 	}
@@ -205,7 +206,39 @@ public class MenjacnicaGUI extends JFrame {
 	private JPopupMenu getPopupMenu() {
 		if (popupMenu == null) {
 			popupMenu = new JPopupMenu();
+			popupMenu.add(getMntmDodajKurs());
+			popupMenu.add(getMntmObrisiKurs());
+			popupMenu.add(getMntmIzvrsiZamenu());
 		}
 		return popupMenu;
+	}
+	
+	
+	
+	
+	
+	private JMenuItem getMntmDodajKurs() {
+		if (mntmDodajKurs == null) {
+			mntmDodajKurs = new JMenuItem("Dodaj kurs");
+		}
+		return mntmDodajKurs;
+	}
+	private JMenuItem getMntmObrisiKurs() {
+		if (mntmObrisiKurs == null) {
+			mntmObrisiKurs = new JMenuItem("Obrisi kurs");
+		}
+		return mntmObrisiKurs;
+	}
+	private JMenuItem getMntmIzvrsiZamenu() {
+		if (mntmIzvrsiZamenu == null) {
+			mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
+		}
+		return mntmIzvrsiZamenu;
+	}
+	
+	
+	public void osveziTabelu(){
+		MenjacnicaModel model = (MenjacnicaModel) table.getModel();
+		model.ubaciSveUModel(GUIKontroler.vratiKurnuListu());
 	}
 }

@@ -9,12 +9,13 @@ import menjacnica.Kurs;
 
 public class MenjacnicaModel extends AbstractTableModel {
 
-	String[] kolone={"Sifra", "Skraceni naziv","Prodajni", "Srednji","Kupovni","Naziv"};
-	LinkedList<Kurs> kursevi;
+	private final String[] kolone={"Sifra", "Skraceni naziv","Prodajni", "Srednji","Kupovni","Naziv"};
+	private LinkedList<Kurs> kursnaLista;
 	
-	public MenjacnicaModel() {
-		kursevi=new LinkedList<>();
+	public MenjacnicaModel(LinkedList<Kurs> kursnaLista) {
+		this.kursnaLista=kursnaLista;
 	}
+	
 	@Override
 	public int getColumnCount() {
 		return kolone.length;
@@ -22,21 +23,21 @@ public class MenjacnicaModel extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return kursevi.size();
+		return kursnaLista.size();
 	}
 
 	@Override
 	public Object getValueAt(int red, int kolona) {
 		switch (kolona) {
-		case 0: return kursevi.get(red).getSifra();
-		case 1: return kursevi.get(red).getSkraceniNaziv();
-		case 2: return kursevi.get(red).getProdajni();
-		case 3: return kursevi.get(red).getSrednji();
-		case 4: return kursevi.get(red).getKupovni();
-		case 5: return kursevi.get(red).getNaziv();
+		case 0: return kursnaLista.get(red).getSifra();
+		case 1: return kursnaLista.get(red).getSkraceniNaziv();
+		case 2: return kursnaLista.get(red).getProdajni();
+		case 3: return kursnaLista.get(red).getSrednji();
+		case 4: return kursnaLista.get(red).getKupovni();
+		case 5: return kursnaLista.get(red).getNaziv();
 			
 
-		default: return "N/A";
+		default: return "NN";
 	
 		}
 	}
@@ -48,4 +49,27 @@ public class MenjacnicaModel extends AbstractTableModel {
 		
 		return false;
 	}
+	
+	public Kurs vratiKurs(int index){
+		return kursnaLista.get(index);
+	}
+	
+	
+	public void ubaciSveUModel(LinkedList<Kurs> kursnaLista){
+		this.kursnaLista=kursnaLista;
+		fireTableDataChanged();
+
+	}
+	
+	@Override
+	public String getColumnName(int arg0) {
+	
+		return kolone[arg0];
+	}
+	
+	
+	
+		
+	
+	
 }
