@@ -53,7 +53,9 @@ public class GUIKontroler extends JFrame {
 	}
 	
 	public static LinkedList<Kurs> vratiKurnuListu(){
-		return menjacnica.vratiKursnuListu();
+        Menjacnica instance = Menjacnica.getInstance();
+		
+		return instance.vratiKursnuListu();
 	}
 
 }

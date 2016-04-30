@@ -4,8 +4,14 @@ import java.util.LinkedList;
 
 public class Menjacnica implements MenjacnicaInterfejs  {
 	LinkedList<Kurs> kursnaLista=new LinkedList<>();
+	private static Menjacnica instance;
 	
 
+	public static Menjacnica getInstance(){
+		if(instance == null)
+			instance = new Menjacnica();
+		return instance;
+	}
 
 	
 	
