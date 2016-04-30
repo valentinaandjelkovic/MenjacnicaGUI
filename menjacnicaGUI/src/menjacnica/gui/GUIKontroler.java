@@ -2,11 +2,16 @@ package menjacnica.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.io.File;
 import java.util.LinkedList;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
 
 import menjacnica.Kurs;
 import menjacnica.Menjacnica;
@@ -58,4 +63,60 @@ public class GUIKontroler extends JFrame {
 		return instance.vratiKursnuListu();
 	}
 
+	public static void ucitajIzFajla() {
+		
+		try {
+			JFileChooser jfc = new JFileChooser();
+			int option = jfc.showOpenDialog(glavniProzor.getContentPane());
+
+			if (option == JFileChooser.APPROVE_OPTION) {
+				File file = jfc.getSelectedFile();
+				menjacnica.ucitajIzFajla(file.getAbsolutePath());
+				glavniProzor.getTextArea().append("Ucitan fajl: " + file.getAbsolutePath() + "\n");
+				glavniProzor.osveziTabelu();
+	 }
+		}catch(Exception e){
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e.getMessage(),
+					"Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public static void sacuvajUFajl (){
+		try
+		{
+			JFileChooser jfc = new JFileChooser();
+			int option = jfc.showSaveDialog(glavniProzor.getContentPane());
+
+			if (option == JFileChooser.APPROVE_OPTION)
+			{
+				File file = jfc.getSelectedFile();
+				menjacnica.sacuvajUFajl(file.getAbsolutePath());
+				glavniProzor.getTextArea().append("Sacuvan fajl: " + file.getAbsolutePath() + "\n"); 
+			}
+	} catch(Exception e){
+		JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e.getMessage(),
+				"Greska", JOptionPane.ERROR_MESSAGE);
+	}
+}
+	
+	public static void zatvoriAplikaciju(){
+		int opcija=JOptionPane.showConfirmDialog(
+				glavniProzor.getContentPane(),
+				"Da li zelite da izadjete iz aplikacije?",
+				"Exit",
+				JOptionPane.YES_NO_OPTION);
+
+		if (opcija == JOptionPane.YES_OPTION)
+			System.exit(0);	
+	}
+
+	public static void prikaziInformacije() {
+		JOptionPane.showMessageDialog(
+				glavniProzor.getContentPane(),
+				"Autor: Valentina Andjelkovic 1/14",
+				"About",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	
 }

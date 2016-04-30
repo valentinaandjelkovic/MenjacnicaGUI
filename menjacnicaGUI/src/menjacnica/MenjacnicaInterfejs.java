@@ -7,4 +7,7 @@ public interface MenjacnicaInterfejs {
 	public void izbrisiKurs(Kurs k);
 	public Kurs vratiKurs(String naziv);
 	public LinkedList<Kurs> vratiKursnuListu();
+	
+	public void ucitajIzFajla(String putanja);
+	public void sacuvajUFajl (String putanja);
 }
