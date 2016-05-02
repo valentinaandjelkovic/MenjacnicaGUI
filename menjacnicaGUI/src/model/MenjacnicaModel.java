@@ -55,8 +55,7 @@ public class MenjacnicaModel extends AbstractTableModel {
 	}
 	
 	
-	public void ubaciSveUModel(LinkedList<Kurs> kursnaLista){
-		this.kursnaLista=kursnaLista;
+	public void osveziTabelu(){
 		fireTableDataChanged();
 
 	}

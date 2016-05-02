@@ -171,6 +171,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnDodajKurs() {
 		if (btnDodajKurs == null) {
 			btnDodajKurs = new JButton("Dodaj kurs");
+			btnDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziDodajKursProzor();
+				}
+			});
 		}
 		return btnDodajKurs;
 	}
@@ -207,7 +212,7 @@ public class MenjacnicaGUI extends JFrame {
 			table = new JTable();
 			table.setFillsViewportHeight(true);
 			
-			table.setModel(new MenjacnicaModel(GUIKontroler.vratiKurnuListu()));
+			table.setModel(new MenjacnicaModel(GUIKontroler.vratiKursnuListu()));
 			addPopup(table, getPopupMenu());
 		}
 		return table;
@@ -246,6 +251,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmDodajKurs() {
 		if (mntmDodajKurs == null) {
 			mntmDodajKurs = new JMenuItem("Dodaj kurs");
+			mntmDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.prikaziDodajKursProzor();
+				}
+			});
 		}
 		return mntmDodajKurs;
 	}
@@ -265,7 +275,7 @@ public class MenjacnicaGUI extends JFrame {
 	
 	public void osveziTabelu(){
 		MenjacnicaModel model = (MenjacnicaModel) table.getModel();
-		model.ubaciSveUModel(GUIKontroler.vratiKurnuListu());
+		model.osveziTabelu();
 	}
 	
 	protected void prikaziKursnuListu(LinkedList<Kurs> kursnaLista) {

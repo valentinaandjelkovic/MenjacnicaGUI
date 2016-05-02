@@ -4,7 +4,7 @@ package menjacnica;
 public class Kurs {
 	private String naziv;
 	private String skraceniNaziv;
-	private int sifra;
+	private String sifra;
 	private double prodajni;
 	private double kupovni;
 	private double srednji;
@@ -25,11 +25,11 @@ public class Kurs {
 		this.skraceniNaziv = skraceniNaziv;
 	}
 
-	public int getSifra() {
+	public String getSifra() {
 		return sifra;
 	}
 
-	public void setSifra(int sifra) {
+	public void setSifra(String sifra) {
 		this.sifra = sifra;
 	}
 
@@ -50,9 +50,12 @@ public class Kurs {
 	}
 
 	public double getSrednji() {
-		return (prodajni+kupovni)/2;
+		return srednji;
 	}
 
+	public void setSrednji(double srednji){
+		this.srednji=srednji;
+	}
 	@Override
 	public String toString() {
 		

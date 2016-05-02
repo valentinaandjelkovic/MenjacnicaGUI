@@ -26,7 +26,8 @@ public class GUIKontroler extends JFrame {
 	 */
 	
 	public static MenjacnicaGUI glavniProzor;
-	public  static MenjacnicaInterfejs menjacnica;
+	public  static Menjacnica menjacnica;
+	public static DodajKursGUI dodajKurs;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -35,7 +36,8 @@ public class GUIKontroler extends JFrame {
 					GUIKontroler frame = new GUIKontroler();
 					frame.setVisible(false);
 					glavniProzor=new MenjacnicaGUI();
-					menjacnica=new Menjacnica();
+					dodajKurs=new DodajKursGUI();
+					dodajKurs.setVisible(false);
 					glavniProzor.setVisible(true);
 					glavniProzor.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -57,10 +59,11 @@ public class GUIKontroler extends JFrame {
 		setContentPane(contentPane);
 	}
 	
-	public static LinkedList<Kurs> vratiKurnuListu(){
-        Menjacnica instance = Menjacnica.getInstance();
+	public static LinkedList<Kurs> vratiKursnuListu(){
+		menjacnica= Menjacnica.getInstance();
+     return menjacnica.vratiKursnuListu();
+     
 		
-		return instance.vratiKursnuListu();
 	}
 
 	public static void ucitajIzFajla() {
@@ -116,6 +119,44 @@ public class GUIKontroler extends JFrame {
 				"Autor: Valentina Andjelkovic 1/14",
 				"About",
 				JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	public static void prikaziDodajKursProzor() {
+		
+		dodajKurs.setLocationRelativeTo(glavniProzor.getContentPane());
+		dodajKurs.setVisible(true);
+			
+		
+	}
+
+	public static void dodajKurs(String naziv, double kupovni, double prodajni, double srednji,
+			String sifra, String skraceniNaziv) {
+		try{
+		Kurs k=new Kurs();
+		k.setNaziv(naziv);
+		k.setKupovni(kupovni);
+		k.setProdajni(prodajni);
+		k.setSifra(sifra);
+		k.setSkraceniNaziv(skraceniNaziv);
+		k.setSrednji(srednji);
+		
+		menjacnica.ubaciKurs(k);
+		glavniProzor.osveziTabelu();
+		
+		glavniProzor.getTextArea().append("Dodat kurs: "+naziv+" "+sifra+" "+kupovni+" "+srednji+" "+prodajni+" "+skraceniNaziv+ "\n");
+		obrisiPolja();
+
+		} catch(Exception e){
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e.getMessage(),
+					"Greska", JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+
+	private static void obrisiPolja() {
+	
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
