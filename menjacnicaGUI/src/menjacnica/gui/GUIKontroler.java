@@ -28,6 +28,7 @@ public class GUIKontroler extends JFrame {
 	public static MenjacnicaGUI glavniProzor;
 	public  static Menjacnica menjacnica;
 	public static DodajKursGUI dodajKurs;
+	public static IzvrsiZamenuGUI zamena;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -37,6 +38,8 @@ public class GUIKontroler extends JFrame {
 					frame.setVisible(false);
 					glavniProzor=new MenjacnicaGUI();
 					dodajKurs=new DodajKursGUI();
+					zamena=new IzvrsiZamenuGUI();
+					zamena.setVisible(false);
 					dodajKurs.setVisible(false);
 					glavniProzor.setVisible(true);
 					glavniProzor.setLocationRelativeTo(null);
@@ -184,4 +187,10 @@ public class GUIKontroler extends JFrame {
 }
 
 	}
+	
+	public static void otvoriProzorIzvrsiZamenu(){
+		zamena.setVisible(true);
+		zamena.setLocationRelativeTo(null);
+	}
+	
 }
