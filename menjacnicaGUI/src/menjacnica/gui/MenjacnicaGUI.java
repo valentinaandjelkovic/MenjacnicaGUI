@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
@@ -182,6 +183,21 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnObrisiKurs() {
 		if (btnObrisiKurs == null) {
 			btnObrisiKurs = new JButton("Obrisi kurs");
+			btnObrisiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int selektovaniRed=table.getSelectedRow();
+					if(selektovaniRed!=-1){
+						GUIKontroler.obrisiKurs(selektovaniRed);
+
+					} else {
+						JOptionPane.showMessageDialog(
+								getContentPane(),
+								"Morate selektovati red",
+								"ERROR", 
+								JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			});
 		}
 		return btnObrisiKurs;
 	}
@@ -262,6 +278,21 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmObrisiKurs() {
 		if (mntmObrisiKurs == null) {
 			mntmObrisiKurs = new JMenuItem("Obrisi kurs");
+			mntmObrisiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int selektovaniRed=table.getSelectedRow();
+					if(selektovaniRed!=-1){
+						GUIKontroler.obrisiKurs(selektovaniRed);
+					} else {
+						JOptionPane.showMessageDialog(
+								getContentPane(),
+								"Morate selektovati red",
+								"ERROR", 
+								JOptionPane.ERROR_MESSAGE);
+					}
+				
+				}
+			});
 		}
 		return mntmObrisiKurs;
 	}

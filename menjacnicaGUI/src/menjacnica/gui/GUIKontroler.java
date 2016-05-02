@@ -144,7 +144,7 @@ public class GUIKontroler extends JFrame {
 		glavniProzor.osveziTabelu();
 		
 		glavniProzor.getTextArea().append("Dodat kurs: "+naziv+" "+sifra+" "+kupovni+" "+srednji+" "+prodajni+" "+skraceniNaziv+ "\n");
-		obrisiPolja();
+		
 
 		} catch(Exception e){
 			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e.getMessage(),
@@ -153,11 +153,35 @@ public class GUIKontroler extends JFrame {
 		
 	}
 
-	private static void obrisiPolja() {
 	
-		// TODO Auto-generated method stub
+
+	public static void obrisiKurs(int index){
+	
+		Menjacnica menjacnica= Menjacnica.getInstance();
 		
+		Kurs k=menjacnica.vratiKursnuListu().get(index);
+		
+		int odgovor = JOptionPane.showConfirmDialog (
+				glavniProzor.getContentPane(), 
+				"Da li ste sigurni da zelite da izbrisete kurs?",
+				"Obrisi kurs",
+				JOptionPane.YES_NO_OPTION);
+		
+		if(odgovor == JOptionPane.YES_OPTION)
+		{
+			menjacnica.izbrisiKurs(k);
+			glavniProzor.osveziTabelu();
+			
+			
+			
+			JOptionPane.showMessageDialog(
+					glavniProzor.getContentPane(),
+					"Uspesno brisanje kursa",
+					"Obrisan kurs",
+					JOptionPane.INFORMATION_MESSAGE);
+			
+			glavniProzor.getTextArea().append("Izbrisan red sa indeksom "+index+ "\n");
+}
+
 	}
-	
-	
 }
