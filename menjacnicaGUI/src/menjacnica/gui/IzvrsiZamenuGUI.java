@@ -37,9 +37,8 @@ public class IzvrsiZamenuGUI extends JFrame {
 	private JRadioButton rdbtnProdaja;
 
 	private ButtonGroup bg=new ButtonGroup();
-	/**
-	 * Launch the application.
-	 */
+	
+	
 	
 
 	/**

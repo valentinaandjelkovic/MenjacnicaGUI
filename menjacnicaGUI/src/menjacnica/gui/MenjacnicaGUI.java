@@ -52,7 +52,6 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton btnDodajKurs;
 	private JButton btnObrisiKurs;
 	private JButton btnNewButton;
-	private JTextArea textArea;
 	private JScrollPane scrollPane;
 	private JTable table;
 	private JList list;
@@ -60,6 +59,9 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem mntmDodajKurs;
 	private JMenuItem mntmObrisiKurs;
 	private JMenuItem mntmIzvrsiZamenu;
+	private JPanel panel_1;
+	private JScrollPane scrollPane_1;
+	private JTextArea textArea;
 	
 
 
@@ -82,8 +84,8 @@ public class MenjacnicaGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(getPanel(), BorderLayout.EAST);
-		contentPane.add(getTextArea(), BorderLayout.SOUTH);
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
+		contentPane.add(getPanel_1_1(), BorderLayout.SOUTH);
 	}
 
 	private JMenuBar getMenuBar_1() {
@@ -212,14 +214,6 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return btnNewButton;
 	}
-	public JTextArea getTextArea() {
-		if (textArea == null) {
-			textArea = new JTextArea();
-			textArea.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			textArea.setPreferredSize(new Dimension(4, 50));
-		}
-		return textArea;
-	}
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -322,5 +316,28 @@ public class MenjacnicaGUI extends JFrame {
 	
 	protected void prikaziKursnuListu(LinkedList<Kurs> kursnaLista) {
 		list.setListData(kursnaLista.toArray());
+	}
+	private JPanel getPanel_1_1() {
+		if (panel_1 == null) {
+			panel_1 = new JPanel();
+			panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setPreferredSize(new Dimension(300, 50));
+			panel_1.setLayout(new BorderLayout(0, 0));
+			panel_1.add(getScrollPane_1(), BorderLayout.CENTER);
+		}
+		return panel_1;
+	}
+	private JScrollPane getScrollPane_1() {
+		if (scrollPane_1 == null) {
+			scrollPane_1 = new JScrollPane();
+			scrollPane_1.setViewportView(getTextArea());
+		}
+		return scrollPane_1;
+	}
+	public JTextArea getTextArea() {
+		if (textArea == null) {
+			textArea = new JTextArea();
+		}
+		return textArea;
 	}
 }
